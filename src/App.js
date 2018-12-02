@@ -1,7 +1,13 @@
 import React, { Component, Suspense } from "react";
+import { connect } from "react-redux";
+import { fetchTrendingMovies } from "actions";
 const Layout = React.lazy(() => import("components/Layout"));
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchTrendingMovies());
+  }
+
   render() {
     return (
       <Suspense fallback={null}>
@@ -11,4 +17,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

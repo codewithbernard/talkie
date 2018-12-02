@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { slideInRight, fadeIn } from "components/animations";
 
 const Sidenav = ({ items }) => {
   const [active, setActive] = useState(items[0]);
@@ -24,29 +25,8 @@ const Sidenav = ({ items }) => {
 
 export default Sidenav;
 
-const slideInRight = keyframes`
-  0% {
-    transform: translate(-250px);
-  }
-  100% {
-    transform: translate(0px);
-  }
-`;
-
-const fadeIn = keyframes`
-0% {
-  opacity: 0;
-}
-50% {
-  opacity: 0;
-}
-100% {
-  opacity: 1;
-}
-`;
-
 const MenuHeader = styled.h4`
-  color: #373a42;
+  color: #5f5f61;
   margin: 30px 0 15px 60px;
   animation: ${slideInRight} 2s, ${fadeIn} 2s;
 `;

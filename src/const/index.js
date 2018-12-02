@@ -1,5 +1,4 @@
 const categories = [
-  "Trending",
   "Comedy",
   "Drama",
   "Thriller",

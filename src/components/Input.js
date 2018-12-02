@@ -22,16 +22,16 @@ const StyledInput = styled.input`
   outline: none;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid ${props => (props.focus ? "#00b7ff" : "#373a42")};
+  border-bottom: 1px solid ${props => (props.focus ? "#00b7ff" : "#5f5f61")};
   padding-bottom: 5px;
   font-size: 22px;
-  color: ${props => (props.focus ? "#00b7ff" : "#373a42")};
+  color: ${props => (props.focus ? "#00b7ff" : "#5f5f61")};
 
   transition: border-bottom 0.3s;
 `;
 
 const Icon = styled.i`
-  color: ${props => (props.focus ? "#00b7ff" : "#373a42")};
+  color: ${props => (props.focus ? "#00b7ff" : "#5f5f61")};
   margin-right: 10px;
   font-size: 24px;
   transition: color 0.3s;
