@@ -1,12 +1,21 @@
 import React from "react";
-import Sidenav from "./Sidenav";
-import { categories } from "../const";
+import styled from "styled-components";
+import Sidenav from "components/Sidenav";
+import Navbar from "components/Navbar";
+import { categories } from "const";
 
 const Layout = ({ children }) => (
   <React.Fragment>
     <Sidenav items={categories} />
-    {children}
+    <Main>
+      <Navbar />
+      {children}
+    </Main>
   </React.Fragment>
 );
 
 export default Layout;
+
+const Main = styled.main`
+  width: 100%;
+`;

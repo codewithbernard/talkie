@@ -1,9 +1,13 @@
-import React, { Component } from "react";
-import Layout from "./components/Layout";
+import React, { Component, Suspense } from "react";
+const Layout = React.lazy(() => import("components/Layout"));
 
 class App extends Component {
   render() {
-    return <Layout />;
+    return (
+      <Suspense fallback={null}>
+        <Layout />
+      </Suspense>
+    );
   }
 }
 

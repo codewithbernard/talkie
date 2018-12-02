@@ -1,33 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
-class Sidenav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: this.props.items[0]
-    };
-  }
+const Sidenav = ({ items }) => {
+  const [active, setActive] = useState(items[0]);
 
-  render() {
-    const renderItems = this.props.items.map(item => (
-      <li
-        key={item}
-        onClick={() => this.setState({ active: item })}
-        className={this.state.active === item ? "active" : ""}
-      >
-        {item}
-      </li>
-    ));
-    return (
-      <StyledSidenav>
-        <Logo>Talkie</Logo>
-        <MenuHeader>Categories</MenuHeader>
-        <Menu>{renderItems}</Menu>
-      </StyledSidenav>
-    );
-  }
-}
+  const renderItems = items.map(item => (
+    <li
+      key={item}
+      onClick={() => setActive(item)}
+      className={active === item ? "active" : ""}
+    >
+      {item}
+    </li>
+  ));
+  return (
+    <StyledSidenav>
+      <Logo>Talkie</Logo>
+      <MenuHeader>Categories</MenuHeader>
+      <Menu>{renderItems}</Menu>
+    </StyledSidenav>
+  );
+};
+
 export default Sidenav;
 
 const slideInRight = keyframes`
@@ -95,4 +89,5 @@ const StyledSidenav = styled.aside`
   background-color: #111a1f;
   width: 250px;
   animation: ${slideInRight} 1s;
+  overflow: overlay;
 `;
