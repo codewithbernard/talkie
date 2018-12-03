@@ -32,7 +32,7 @@ const MenuHeader = styled.h4`
 `;
 
 const Menu = styled.ul`
-  color: white;
+  color: #c0c9c1;
   list-style: none;
   font-weight: 600;
   font-size: 12px;
@@ -55,7 +55,7 @@ const Menu = styled.ul`
 `;
 
 const Logo = styled.div`
-  color: white;
+  color: #c0c9c1;
   font-family: "Indie Flower", cursive;
   text-align: center;
   vertical-align: middle;
@@ -67,7 +67,7 @@ const Logo = styled.div`
 
 const StyledSidenav = styled.aside`
   background-color: #111a1f;
-  width: 250px;
   animation: ${slideInRight} 1s;
   overflow: overlay;
+  flex: 0 0 250px;
 `;

@@ -17,5 +17,5 @@ const Layout = ({ children }) => (
 export default Layout;
 
 const Main = styled.main`
-  width: 100%;
+  flex: 1 1 auto;
 `;

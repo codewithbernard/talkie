@@ -11,3 +11,7 @@ body {
     height: 100%;
     display: flex;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
