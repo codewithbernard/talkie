@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Carousel items={["1", "2", "3", "4", "5", "6"]} />
+        <Carousel items={["1", "2", "3", "4", "5", "6", "7", "8", "9"]} />
       </Fragment>
     );
   }

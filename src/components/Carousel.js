@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { fadeIn, slideInTop } from "components/animations";
 
 const Carousel = ({ items }) => {
-  const position = usePosition(0, items);
+  const position = usePosition(0);
 
   const nextSlide = () => {
-    if (position.value < items.length) {
-      position.setValue(position.value + 1);
-    }
+    const newPosition =
+      position.value === items.length - 4 ? 0 : position.value + 1;
+    position.setValue(newPosition);
   };
 
   const prevSlide = () => {
-    if (position.value > 0) {
-      position.setValue(position.value - 1);
-    }
+    const newPosition =
+      position.value === 0 ? items.length - 4 : position.value - 1;
+    position.setValue(newPosition);
   };
 
   return (
-    <MovieList>
+    <StyledCarousel>
       <Title>Trending This Week</Title>
       <ButtonRight onClick={nextSlide}>
         <i className="fas fa-chevron-right" />
@@ -25,12 +26,12 @@ const Carousel = ({ items }) => {
       <ButtonLeft onClick={prevSlide}>
         <i className="fas fa-chevron-left" />
       </ButtonLeft>
-      <Movies position={position.value}>
+      <Items position={position.value}>
         {items.map((item, index) => (
-          <Movie key={index}>{item}</Movie>
+          <Item key={index}>{item}</Item>
         ))}
-      </Movies>
-    </MovieList>
+      </Items>
+    </StyledCarousel>
   );
 };
 
@@ -74,11 +75,12 @@ const ButtonLeft = styled.button`
   z-index: 9999;
 `;
 
-const MovieList = styled.div`
+const StyledCarousel = styled.div`
   position: relative;
   width: auto;
   margin: 0 50px;
   overflow: hidden;
+  animation: ${fadeIn} 3s, ${slideInTop} 3s;
 `;
 
 const Title = styled.h2`
@@ -86,17 +88,18 @@ const Title = styled.h2`
   font-size: 20px;
 `;
 
-const Movies = styled.ul`
+const Items = styled.ul`
   display: flex;
   list-style: none;
   padding: 0;
-  transform: translateX(${props => 0 - props.position * 250}px);
+  transform: translateX(calc(-${props => props.position * 280}px - 10px));
   transition: transform 0.5s;
 `;
 
-const Movie = styled.li`
+const Item = styled.li`
   height: 200px;
   margin: 0 10px;
   background-color: grey;
   flex: 1 0 260px;
+  order: ${props => props.order};
 `;

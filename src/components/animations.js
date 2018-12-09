@@ -9,6 +9,15 @@ const slideInRight = keyframes`
   }
 `;
 
+const slideInTop = keyframes`
+0% {
+  transform: translateY(250px);
+}
+100% {
+  transform: translateY(0px);
+}
+`;
+
 const fadeIn = keyframes`
 0% {
   opacity: 0;
@@ -21,4 +30,4 @@ const fadeIn = keyframes`
 }
 `;
 
-export { slideInRight, fadeIn };
+export { slideInRight, slideInTop, fadeIn };
