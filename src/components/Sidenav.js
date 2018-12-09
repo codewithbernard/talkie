@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { slideInRight, fadeIn } from "components/animations";
+import { slideInRight, fadeIn } from "styled";
 
 const Sidenav = ({ items }) => {
   const [active, setActive] = useState(items[0]);
 
-  const renderItems = items.map(item => (
+  const renderItems = items.map((item, index) => (
     <li
       key={item}
       onClick={() => setActive(item)}
@@ -46,6 +46,7 @@ const Menu = styled.ul`
     cursor: pointer;
     border-left: 3px solid transparent;
     transition: color 0.5s, border 0.5s;
+    outline-width: 0;
 
     &.active {
       border-left: 3px solid #00b7ff;

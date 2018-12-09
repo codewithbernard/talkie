@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { fadeIn, slideInTop } from "components/animations";
+import { fadeIn, slideInTop } from "styled";
 
 const Carousel = ({ items }) => {
   const position = usePosition(0);

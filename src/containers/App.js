@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Suspense fallback={null}>
         <Layout>
-          <Home items={["1", "2", "3", "4", "5", "6"]} />
+          <Home />
         </Layout>
       </Suspense>
     );
