@@ -1,12 +1,28 @@
-import { put, call, takeEvery } from "redux-saga/effects";
-import { fetchTrendingMovies } from "api";
-import { FETCH_TRENDING_MOVIES, receiveTrendingMovies } from "actions";
+import { put, call, all, takeEvery } from "redux-saga/effects";
+import { normalize } from "normalizr";
+import { categoryListSchema } from "schemas";
+import * as api from "api";
+import {
+  FETCH_TRENDING_MOVIES,
+  FETCH_CATEGORIES,
+  receiveTrendingMovies,
+  receiveCategories
+} from "actions";
 
 function* fetchMovies() {
-  const movies = yield call(fetchTrendingMovies);
+  const movies = yield call(api.fetchTrendingMovies);
   yield put(receiveTrendingMovies(movies.results));
 }
 
+function* fetchCategories() {
+  const res = yield call(api.fetchCategories);
+  const normalized = normalize(res.genres, categoryListSchema);
+  yield put(receiveCategories(normalized.entities.categories));
+}
+
 export default function* rootSaga() {
-  yield takeEvery(FETCH_TRENDING_MOVIES, fetchMovies);
+  yield all([
+    takeEvery(FETCH_TRENDING_MOVIES, fetchMovies),
+    takeEvery(FETCH_CATEGORIES, fetchCategories)
+  ]);
 }

@@ -1,12 +1,13 @@
 import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
-import { fetchTrendingMovies } from "actions";
-import Home from "./Home";
+import { fetchTrendingMovies, fetchCategories } from "actions";
+const Home = React.lazy(() => import("./Home"));
 const Layout = React.lazy(() => import("components/Layout"));
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchTrendingMovies());
+    this.props.fetchTrendingMovies();
+    this.props.fetchCategories();
   }
 
   render() {
@@ -20,4 +21,7 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default connect(
+  null,
+  { fetchTrendingMovies, fetchCategories }
+)(App);

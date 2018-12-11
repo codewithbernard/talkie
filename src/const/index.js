@@ -1,4 +1,5 @@
 const categories = [
+  "Trending",
   "Comedy",
   "Drama",
   "Thriller",
@@ -9,4 +10,6 @@ const categories = [
   "Sci-fi"
 ];
 
-export { categories };
+const posterApi = "http://image.tmdb.org/t/p/";
+
+export { categories, posterApi };

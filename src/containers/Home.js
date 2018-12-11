@@ -1,19 +1,26 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Carousel from "components/Carousel";
+import MovieList from "components/MovieList";
 
 class Home extends Component {
   render() {
+    if (this.props.categories.length === 0) {
+      return null;
+    }
+
     return (
       <Fragment>
-        <Carousel items={["1", "2", "3", "4", "5", "6", "7", "8", "9"]} />
+        <MovieList
+          categories={this.props.categories}
+          items={this.props.movies}
+        />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = ({ movies }) => {
-  return { movies };
+const mapStateToProps = ({ movies, categories }) => {
+  return { movies, categories };
 };
 
 export default connect(mapStateToProps)(Home);

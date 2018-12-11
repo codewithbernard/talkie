@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { fadeIn, slideInTop } from "styled";
+import MovieItem from "./MovieItem";
 
 const Carousel = ({ items }) => {
   const position = usePosition(0);
@@ -28,7 +29,7 @@ const Carousel = ({ items }) => {
       </ButtonLeft>
       <Items position={position.value}>
         {items.map((item, index) => (
-          <Item key={index}>{item}</Item>
+          <MovieItem key={index} item={item} />
         ))}
       </Items>
     </StyledCarousel>
@@ -94,12 +95,4 @@ const Items = styled.ul`
   padding: 0;
   transform: translateX(calc(-${props => props.position * 280}px - 10px));
   transition: transform 0.5s;
-`;
-
-const Item = styled.li`
-  height: 200px;
-  margin: 0 10px;
-  background-color: grey;
-  flex: 1 0 260px;
-  order: ${props => props.order};
 `;

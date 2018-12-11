@@ -1,12 +1,17 @@
 import ky from "ky";
 const API_URL = "http://api.themoviedb.org/3";
+const { REACT_APP_API_KEY } = process.env;
+const api = ky.extend({
+  prefixUrl: API_URL,
+  searchParams: { api_key: REACT_APP_API_KEY }
+});
 
 const fetchTrendingMovies = async () => {
-  return await ky
-    .get(
-      `${API_URL}/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`
-    )
-    .json();
+  return await api.get("trending/movie/week").json();
 };
 
-export { fetchTrendingMovies };
+const fetchCategories = async () => {
+  return await api.get("genre/movie/list").json();
+};
+
+export { fetchTrendingMovies, fetchCategories };

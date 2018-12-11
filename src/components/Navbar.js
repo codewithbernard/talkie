@@ -32,8 +32,6 @@ const Form = styled.form`
 `;
 
 const Arrows = styled.div`
-  margin-left: 40px;
-
   & > i {
     color: ${props => (props.active ? "#00b7ff" : "#5f5f61")};
     font-size: 20px;
