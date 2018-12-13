@@ -20,6 +20,7 @@ const InputField = styled.div`
 
 const StyledInput = styled.input`
   outline: none;
+  width: 100%;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid ${props => (props.focus ? "#00b7ff" : "#5f5f61")};

@@ -19,6 +19,10 @@ export default Layout;
 const Main = styled.main`
   flex: 1 1 auto;
   overflow: auto;
-  padding-left: 60px;
+
   scroll-behavior: smooth;
+
+  @media (min-width: 1025px) {
+    padding-left: 60px;
+  }
 `;

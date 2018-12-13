@@ -71,4 +71,9 @@ const StyledSidenav = styled.aside`
   animation: ${slideInRight} 1s;
   overflow: overlay;
   flex: 0 0 250px;
+  display: none;
+
+  @media (min-width: 1025px) {
+    display: block;
+  }
 `;

@@ -27,7 +27,12 @@ export default MovieList;
 const Title = styled.h2`
   color: #c0c9c1;
   font-size: 20px;
+  text-align: center;
   animation: ${fadeIn} 3s, ${slideInTop} 3s;
+
+  @media (min-width: 1025px) {
+    text-align: left;
+  }
 `;
 
 const StyledMovieList = styled.ul`
@@ -36,4 +41,9 @@ const StyledMovieList = styled.ul`
   flex-wrap: wrap;
   padding: 0;
   animation: ${fadeIn} 3s, ${slideInTop} 3s;
+  justify-content: center;
+
+  @media (min-width: 1025px) {
+    justify-content: flex-start;
+  }
 `;

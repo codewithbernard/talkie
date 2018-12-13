@@ -38,23 +38,40 @@ export default MovieItem;
 
 const StyledMovieItem = styled.li`
   display: flex;
-  flex: 1 0 220px;
-  margin: 0 10px;
+  flex: 0 0 220px;
+  margin: 10px 10px;
   padding: 15px 0;
   background-color: inherit;
   flex-direction: column;
   align-items: center;
-  transition: background-color 0.5s, box-shadow 0.5s;
   cursor: pointer;
-
-  &:hover {
-    background-color: #121b24;
-    box-shadow: 0px 0px 20px #00000085;
+  background-color: #121b24;
+  box-shadow: 0px 0px 20px #00000085;
+  & p,
+  & ul {
+    opacity: 1;
   }
 
-  &:hover p,
-  &:hover ul {
-    opacity: 1;
+  @media (min-width: 1025px) {
+    background-color: inherit;
+    box-shadow: none;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    margin: 0 10px;
+
+    & p,
+    & ul {
+      opacity: 0;
+    }
+
+    &:hover {
+      background-color: #121b24;
+      box-shadow: 0px 0px 20px #00000085;
+    }
+
+    &:hover p,
+    &:hover ul {
+      opacity: 1;
+    }
   }
 `;
 
