@@ -10,6 +10,7 @@ const Navbar = () => {
         <i className="fas fa-chevron-left" />
         <i className="fas fa-chevron-right" />
       </Arrows>
+      <Logo>Talkie</Logo>
       <Form>
         <Input />
       </Form>
@@ -21,7 +22,7 @@ export default Navbar;
 
 const Nav = styled.nav`
   display: flex;
-  padding: 15px 0;
+  padding: 15px 25px;
   align-items: center;
   justify-content: center;
   background-color: #111a1f;
@@ -38,10 +39,12 @@ const Nav = styled.nav`
 
 const Form = styled.form`
   width: 200px;
+  display: none;
 
   @media (min-width: 1025px) {
     margin: 0 40px 0 0;
     width: 300px;
+    display: block;
   }
 `;
 
@@ -57,5 +60,18 @@ const Arrows = styled.div`
       margin-right: 15px;
       cursor: pointer;
     }
+  }
+`;
+
+const Logo = styled.div`
+  color: #c0c9c1;
+  font-family: "Indie Flower", cursive;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: bold;
+
+  @media (min-width: 1025px) {
+    display: none;
   }
 `;
