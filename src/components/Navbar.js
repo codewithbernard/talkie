@@ -21,19 +21,20 @@ const Navbar = () => {
 export default Navbar;
 
 const Nav = styled.nav`
-  display: flex;
-  padding: 15px 25px;
-  align-items: center;
-  justify-content: center;
+  padding: 15px 0;
   background-color: #111a1f;
   box-shadow: 0px -10px 25px black;
   animation: ${fadeIn} 2.5s;
+  position: fixed;
+  width: 100%;
 
   @media (min-width: 1025px) {
     padding: 25px 0;
     background-color: inherit;
     box-shadow: none;
     justify-content: space-between;
+    display: flex;
+    position: unset;
   }
 `;
 

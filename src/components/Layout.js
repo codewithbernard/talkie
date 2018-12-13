@@ -9,12 +9,20 @@ const Layout = ({ children }) => (
     <Sidenav items={categories} />
     <Main>
       <Navbar />
-      {children}
+      <Article>{children}</Article>
     </Main>
   </React.Fragment>
 );
 
 export default Layout;
+
+const Article = styled.article`
+  margin-top: 80px;
+
+  @media (min-width: 1025px) {
+    margin-top: 0px;
+  }
+`;
 
 const Main = styled.main`
   flex: 1 1 auto;
