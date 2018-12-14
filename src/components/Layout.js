@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Sidenav from "components/Sidenav";
 import Navbar from "components/Navbar";
-import { categories } from "const";
+import { categories, featured } from "const";
 
 const Layout = ({ children }) => (
   <React.Fragment>
-    <Sidenav items={categories} />
+    <Sidenav items={categories} featured={featured} />
     <Main>
       <Navbar />
       <Article>{children}</Article>

@@ -1,5 +1,4 @@
 const categories = [
-  "Trending",
   "Comedy",
   "Drama",
   "Thriller",
@@ -10,6 +9,8 @@ const categories = [
   "Sci-fi"
 ];
 
+const featured = ["This Week", "Today"];
+
 const posterApi = "http://image.tmdb.org/t/p/";
 
-export { categories, posterApi };
+export { categories, posterApi, featured };

@@ -2,8 +2,8 @@ import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 import { slideInRight, fadeIn } from "styled";
 
-const Sidenav = ({ items }) => {
-  const [active, setActive] = useState(items[0]);
+const Sidenav = ({ items, featured }) => {
+  const [active, setActive] = useState(featured[0]);
   const [open, setOpen] = useState(false);
 
   const renderItems = items.map((item, index) => (
@@ -15,10 +15,22 @@ const Sidenav = ({ items }) => {
       {item}
     </li>
   ));
+
+  const renderFeatured = featured.map(item => (
+    <li
+      key={item}
+      onClick={() => setActive(item)}
+      className={active === item ? "active" : ""}
+    >
+      {item}
+    </li>
+  ));
   return (
     <Fragment>
       <StyledSidenav open={open}>
         <Logo>Talkie</Logo>
+        <MenuHeader>Featured</MenuHeader>
+        <Menu>{renderFeatured}</Menu>
         <MenuHeader>Categories</MenuHeader>
         <Menu>{renderItems}</Menu>
       </StyledSidenav>
