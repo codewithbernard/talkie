@@ -4,10 +4,10 @@ import styled from "styled-components";
 import MovieItem from "./MovieItem";
 import { fadeIn, slideInTop } from "styled";
 
-const MovieList = ({ items, categories }) => {
+const MovieList = ({ items, categories, title }) => {
   return (
     <Fragment>
-      <Title>Trending This Week</Title>
+      <Title>{title}</Title>
       <StyledMovieList>
         {items.map((item, index) => (
           <MovieItem key={index} item={item} categories={categories} />
@@ -19,7 +19,8 @@ const MovieList = ({ items, categories }) => {
 
 MovieList.propTypes = {
   items: PropTypes.array.isRequired,
-  categories: PropTypes.object.isRequired
+  categories: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default MovieList;

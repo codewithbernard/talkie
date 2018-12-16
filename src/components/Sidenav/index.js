@@ -1,28 +1,27 @@
 import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 import { slideInRight, fadeIn } from "styled";
+import history from "browserHistory";
 
 const Sidenav = ({ items, featured }) => {
-  const [active, setActive] = useState(featured[0]);
   const [open, setOpen] = useState(false);
-
   const renderItems = items.map((item, index) => (
     <li
+      onClick={() => redirect(item.value)}
+      className={isActive(item.value)}
       key={index}
-      onClick={() => setActive(item)}
-      className={active === item ? "active" : ""}
     >
-      {item}
+      {item.label}
     </li>
   ));
 
   const renderFeatured = featured.map(item => (
     <li
-      key={item}
-      onClick={() => setActive(item)}
-      className={active === item ? "active" : ""}
+      onClick={() => redirect(item.value)}
+      className={isActive(item.value)}
+      key={item.value}
     >
-      {item}
+      {item.label}
     </li>
   ));
   return (
@@ -42,6 +41,18 @@ const Sidenav = ({ items, featured }) => {
 };
 
 export default Sidenav;
+
+const isActive = path => {
+  if (`/${path}` === history.location.pathname) {
+    return "active";
+  }
+
+  return "";
+};
+
+const redirect = path => {
+  history.push(path);
+};
 
 const ToggleButton = styled.button`
   background-color: transparent;

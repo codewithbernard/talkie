@@ -1,9 +1,11 @@
 const FETCH_TRENDING_MOVIES = "FETCH_TRENDING_MOVIES";
+const FETCH_TRENDING_TODAY = "FETCH_TRENDING_TODAY";
+const RECEIVE_TRENDING_TODAY = "RECEIVE_TRENDING_TODAY";
 const RECEIVE_TRENDING_MOVIES = "RECEIVE_TRENDING_MOVIES";
 const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 
-const fetchTrendingMovies = () => {
+const fetchTrendingWeek = () => {
   return {
     type: FETCH_TRENDING_MOVIES
   };
@@ -12,6 +14,19 @@ const fetchTrendingMovies = () => {
 const receiveTrendingMovies = movies => {
   return {
     type: RECEIVE_TRENDING_MOVIES,
+    payload: movies
+  };
+};
+
+const fetchTrendingToday = () => {
+  return {
+    type: FETCH_TRENDING_TODAY
+  };
+};
+
+const receiveTrendingToday = movies => {
+  return {
+    type: RECEIVE_TRENDING_TODAY,
     payload: movies
   };
 };
@@ -30,11 +45,14 @@ const receiveCategories = categories => {
 };
 
 export {
-  fetchTrendingMovies,
+  fetchTrendingWeek,
   receiveTrendingMovies,
   fetchCategories,
   receiveCategories,
+  fetchTrendingToday,
+  receiveTrendingToday,
   FETCH_TRENDING_MOVIES,
+  FETCH_TRENDING_TODAY,
   RECEIVE_TRENDING_MOVIES,
   RECEIVE_CATEGORIES,
   FETCH_CATEGORIES
