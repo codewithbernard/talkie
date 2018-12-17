@@ -9,6 +9,17 @@ const categories = [
   { label: "Sci-fi", value: "scifi" }
 ];
 
+const categoryIds = {
+  comedy: 35,
+  drama: 18,
+  thriller: 53,
+  horror: 27,
+  action: 28,
+  romance: 10749,
+  fantasy: 14,
+  scifi: 878
+};
+
 const featured = [
   { label: "This Week", value: "" },
   { label: "Today", value: "today" }
@@ -16,4 +27,4 @@ const featured = [
 
 const posterApi = "http://image.tmdb.org/t/p/";
 
-export { categories, posterApi, featured };
+export { categories, categoryIds, posterApi, featured };

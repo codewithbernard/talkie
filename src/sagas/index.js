@@ -6,14 +6,14 @@ import {
   FETCH_TRENDING_MOVIES,
   FETCH_CATEGORIES,
   FETCH_TRENDING_TODAY,
-  receiveTrendingMovies,
-  receiveCategories,
-  receiveTrendingToday
+  DISCOVER_BY_CATEGORY,
+  receiveMovies,
+  receiveCategories
 } from "actions";
 
 function* fetchMovies() {
   const movies = yield call(api.fetchTrendingWeek);
-  yield put(receiveTrendingMovies(movies.results));
+  yield put(receiveMovies(movies.results));
 }
 
 function* fetchCategories() {
@@ -24,13 +24,20 @@ function* fetchCategories() {
 
 function* fetchTrendingToday() {
   const movies = yield call(api.fetchTrendingToday);
-  yield put(receiveTrendingToday(movies.results));
+  yield put(receiveMovies(movies.results));
+}
+
+function* discoverByCategory(action) {
+  const { payload } = action;
+  const movies = yield call(() => api.discoverByCategory(payload));
+  yield put(receiveMovies(movies.results));
 }
 
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_TRENDING_MOVIES, fetchMovies),
     takeEvery(FETCH_CATEGORIES, fetchCategories),
-    takeEvery(FETCH_TRENDING_TODAY, fetchTrendingToday)
+    takeEvery(FETCH_TRENDING_TODAY, fetchTrendingToday),
+    takeEvery(DISCOVER_BY_CATEGORY, discoverByCategory)
   ]);
 }

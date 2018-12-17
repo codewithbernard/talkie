@@ -3,9 +3,11 @@ import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchCategories } from "actions";
 import history from "browserHistory";
+import Layout from "components/Layout";
+import { categories, categoryIds } from "const";
 const TrendingWeek = React.lazy(() => import("./TrendingWeek"));
 const TrendingToday = React.lazy(() => import("./TrendingToday"));
-const Layout = React.lazy(() => import("components/Layout"));
+const Category = React.lazy(() => import("./Category"));
 
 class App extends Component {
   componentDidMount() {
@@ -17,10 +19,21 @@ class App extends Component {
       return null;
     }
 
+    const categoryRoutes = categories.map((item, index) => (
+      <Route
+        key={index}
+        exact
+        path={`/${item.value}`}
+        component={props => (
+          <Category categoryId={categoryIds[item.value]} {...props} />
+        )}
+      />
+    ));
+
     return (
       <Router history={history}>
-        <Suspense fallback={null}>
-          <Layout key="layout">
+        <Layout key="layout">
+          <Suspense fallback={null}>
             <Switch>
               <Route
                 exact
@@ -32,9 +45,10 @@ class App extends Component {
                 path="/today"
                 component={props => <TrendingToday {...props} />}
               />
+              {categoryRoutes}
             </Switch>
-          </Layout>
-        </Suspense>
+          </Suspense>
+        </Layout>
       </Router>
     );
   }

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import MovieList from "components/MovieList";
-import { fetchTrendingToday } from "actions";
+import { discoverByCategory } from "actions";
 
-class TrendingToday extends Component {
+class Category extends Component {
   componentDidMount() {
-    this.props.fetchTrendingToday();
+    const { discoverByCategory, categoryId } = this.props;
+    discoverByCategory(categoryId);
   }
 
   render() {
@@ -25,5 +26,5 @@ const mapStateToProps = ({ movies, categories }) => {
 
 export default connect(
   mapStateToProps,
-  { fetchTrendingToday }
-)(TrendingToday);
+  { discoverByCategory }
+)(Category);

@@ -9,10 +9,6 @@ class TrendingWeek extends Component {
   }
 
   render() {
-    if (this.props.categories.length === 0) {
-      return null;
-    }
-
     return (
       <Fragment>
         <MovieList

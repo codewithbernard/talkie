@@ -11,11 +11,26 @@ const fetchTrendingWeek = async () => {
 };
 
 const fetchTrendingToday = async () => {
-  return await api.get("trending/movie/today").json();
+  return await api.get("trending/movie/day").json();
+};
+
+const discoverByCategory = async categoryId => {
+  return await api
+    .get("discover/movie", {
+      searchParams: {
+        with_genres: categoryId
+      }
+    })
+    .json();
 };
 
 const fetchCategories = async () => {
   return await api.get("genre/movie/list").json();
 };
 
-export { fetchTrendingWeek, fetchTrendingToday, fetchCategories };
+export {
+  fetchTrendingWeek,
+  fetchTrendingToday,
+  fetchCategories,
+  discoverByCategory
+};
