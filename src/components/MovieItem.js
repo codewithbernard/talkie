@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { posterApi } from "const";
 
-const MovieItem = ({ item, categories }) => {
+const MovieItem = ({ item, categories, showDetails }) => {
   const {
     original_title,
     poster_path,
@@ -13,7 +13,7 @@ const MovieItem = ({ item, categories }) => {
     vote_average
   } = item;
   return (
-    <StyledMovieItem>
+    <StyledMovieItem className={showDetails && "show-details"}>
       <Poster url={poster_path} />
       <Title>{original_title}</Title>
       <Description>{`${
@@ -31,7 +31,12 @@ const MovieItem = ({ item, categories }) => {
 
 MovieItem.propTypes = {
   item: PropTypes.object.isRequired,
-  categories: PropTypes.object.isRequired
+  categories: PropTypes.object.isRequired,
+  showDetails: PropTypes.bool
+};
+
+MovieItem.defaultProps = {
+  showDetails: false
 };
 
 export default MovieItem;
@@ -56,21 +61,21 @@ const StyledMovieItem = styled.li`
     background-color: inherit;
     box-shadow: none;
     transition: background-color 0.5s, box-shadow 0.5s;
-    margin: 0 10px;
 
     & p,
     & ul {
       opacity: 0;
     }
 
-    &:hover {
+    &:hover,
+    &.show-details {
       background-color: #121b24;
       box-shadow: 0px 0px 20px #00000085;
-    }
 
-    &:hover p,
-    &:hover ul {
-      opacity: 1;
+      p,
+      ul {
+        opacity: 1;
+      }
     }
   }
 `;

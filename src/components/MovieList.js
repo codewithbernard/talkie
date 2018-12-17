@@ -1,16 +1,30 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import MovieItem from "./MovieItem";
 import { fadeIn, slideInTop } from "styled";
 
 const MovieList = ({ items, categories, title }) => {
+  const [showDetails, useShowDetails] = useState(false);
   return (
     <Fragment>
       <Title>{title}</Title>
+      <Button active={showDetails} onClick={() => useShowDetails(!showDetails)}>
+        Details
+        {showDetails ? (
+          <i className="far fa-eye-slash" />
+        ) : (
+          <i className="far fa-eye" />
+        )}
+      </Button>
       <StyledMovieList>
         {items.map((item, index) => (
-          <MovieItem key={index} item={item} categories={categories} />
+          <MovieItem
+            showDetails={showDetails}
+            key={index}
+            item={item}
+            categories={categories}
+          />
         ))}
       </StyledMovieList>
     </Fragment>
@@ -24,6 +38,28 @@ MovieList.propTypes = {
 };
 
 export default MovieList;
+
+const Button = styled.button`
+  display: none;
+
+  @media (min-width: 1025px) {
+    display: block;
+    border: none;
+    outline: none;
+    color: ${props => (props.active ? "#00b7ff" : "#c0c9c1")};
+    cursor: pointer;
+    padding: 0;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: transparent;
+    animation: ${fadeIn} 3s, ${slideInTop} 3s;
+    transition: color 0.8s;
+
+    i {
+      margin-left: 5px;
+    }
+  }
+`;
 
 const Title = styled.h2`
   color: #c0c9c1;
