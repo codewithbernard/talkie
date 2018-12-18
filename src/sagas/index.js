@@ -8,12 +8,18 @@ import {
   FETCH_TRENDING_TODAY,
   DISCOVER_BY_CATEGORY,
   receiveMovies,
-  receiveCategories
+  receiveCategories,
+  receiveNextMovies
 } from "actions";
 
-function* fetchMovies() {
-  const movies = yield call(api.fetchTrendingWeek);
-  yield put(receiveMovies(movies.results));
+function* fetchMovies(action) {
+  const { payload } = action;
+  const movies = yield call(() => api.fetchTrendingWeek(payload));
+  if (payload === 1) {
+    yield put(receiveMovies(movies.results));
+  } else {
+    yield put(receiveNextMovies(movies.results));
+  }
 }
 
 function* fetchCategories() {
@@ -22,15 +28,24 @@ function* fetchCategories() {
   yield put(receiveCategories(normalized.entities.categories));
 }
 
-function* fetchTrendingToday() {
-  const movies = yield call(api.fetchTrendingToday);
-  yield put(receiveMovies(movies.results));
+function* fetchTrendingToday(action) {
+  const { payload } = action;
+  const movies = yield call(() => api.fetchTrendingToday(action.payload));
+  if (payload === 1) {
+    yield put(receiveMovies(movies.results));
+  } else {
+    yield put(receiveNextMovies(movies.results));
+  }
 }
 
 function* discoverByCategory(action) {
-  const { payload } = action;
-  const movies = yield call(() => api.discoverByCategory(payload));
-  yield put(receiveMovies(movies.results));
+  const { category, pageNumber } = action.payload;
+  const movies = yield call(() => api.discoverByCategory(category, pageNumber));
+  if (pageNumber === 1) {
+    yield put(receiveMovies(movies.results));
+  } else {
+    yield put(receiveNextMovies(movies.results));
+  }
 }
 
 export default function* rootSaga() {

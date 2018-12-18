@@ -5,7 +5,7 @@ import { fetchTrendingToday } from "actions";
 
 class TrendingToday extends Component {
   componentDidMount() {
-    this.props.fetchTrendingToday();
+    this.props.fetchTrendingToday(1);
   }
 
   render() {
@@ -14,6 +14,7 @@ class TrendingToday extends Component {
         title="Trending Today"
         categories={this.props.categories}
         items={this.props.movies}
+        load={this.props.fetchTrendingToday}
       />
     );
   }

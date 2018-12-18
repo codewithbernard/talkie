@@ -6,19 +6,32 @@ const api = ky.extend({
   searchParams: { api_key: REACT_APP_API_KEY }
 });
 
-const fetchTrendingWeek = async () => {
-  return await api.get("trending/movie/week").json();
+const fetchTrendingWeek = async page => {
+  return await api
+    .get("trending/movie/week", {
+      searchParams: {
+        page
+      }
+    })
+    .json();
 };
 
-const fetchTrendingToday = async () => {
-  return await api.get("trending/movie/day").json();
+const fetchTrendingToday = async page => {
+  return await api
+    .get("trending/movie/day", {
+      searchParams: {
+        page
+      }
+    })
+    .json();
 };
 
-const discoverByCategory = async categoryId => {
+const discoverByCategory = async (categoryId, page) => {
   return await api
     .get("discover/movie", {
       searchParams: {
-        with_genres: categoryId
+        with_genres: categoryId,
+        page
       }
     })
     .json();

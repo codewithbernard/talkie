@@ -6,15 +6,18 @@ import { discoverByCategory } from "actions";
 class Category extends Component {
   componentDidMount() {
     const { discoverByCategory, categoryId } = this.props;
-    discoverByCategory(categoryId);
+    discoverByCategory(categoryId, 1);
   }
 
   render() {
+    const { title } = this.props;
+    const { discoverByCategory, categoryId } = this.props;
     return (
       <MovieList
-        title="Trending Today"
+        title={title}
         categories={this.props.categories}
         items={this.props.movies}
+        load={page => discoverByCategory(categoryId, page)}
       />
     );
   }

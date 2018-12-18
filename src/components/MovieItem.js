@@ -16,9 +16,10 @@ const MovieItem = ({ item, categories, showDetails }) => {
     <StyledMovieItem className={showDetails && "show-details"}>
       <Poster url={poster_path} />
       <Title>{original_title}</Title>
-      <Description>{`${
-        categories[genre_ids[0]].name
-      } • ${release_date.substring(0, 4)}`}</Description>
+      <Description>{`${getGenre(
+        categories,
+        genre_ids
+      )} • ${release_date.substring(0, 4)}`}</Description>
       <Details>
         <DetailsItem color="#01CF75">
           {original_language.toUpperCase()}
@@ -27,6 +28,10 @@ const MovieItem = ({ item, categories, showDetails }) => {
       </Details>
     </StyledMovieItem>
   );
+};
+
+const getGenre = (categories, genres) => {
+  return categories[genres[0]] ? categories[genres[0]].name : "";
 };
 
 MovieItem.propTypes = {

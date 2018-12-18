@@ -1,11 +1,13 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Waypoint from "react-waypoint";
 import MovieItem from "./MovieItem";
 import { fadeIn, slideInTop } from "styled";
 
-const MovieList = ({ items, categories, title }) => {
+const MovieList = ({ items, categories, title, load }) => {
   const [showDetails, useShowDetails] = useState(false);
+  const [page, usePage] = useState(1);
   return (
     <Fragment>
       <Title>{title}</Title>
@@ -26,6 +28,12 @@ const MovieList = ({ items, categories, title }) => {
             categories={categories}
           />
         ))}
+        <Waypoint
+          onEnter={() => {
+            load(page + 1);
+            usePage(page + 1);
+          }}
+        />
       </StyledMovieList>
     </Fragment>
   );
@@ -34,7 +42,12 @@ const MovieList = ({ items, categories, title }) => {
 MovieList.propTypes = {
   items: PropTypes.array.isRequired,
   categories: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  load: PropTypes.func
+};
+
+MovieList.defaultProps = {
+  load: () => {}
 };
 
 export default MovieList;

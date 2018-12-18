@@ -5,7 +5,7 @@ import { fetchTrendingWeek } from "actions";
 
 class TrendingWeek extends Component {
   componentDidMount() {
-    this.props.fetchTrendingWeek();
+    this.props.fetchTrendingWeek(1);
   }
 
   render() {
@@ -15,6 +15,7 @@ class TrendingWeek extends Component {
           title="Trending This Week"
           categories={this.props.categories}
           items={this.props.movies}
+          load={this.props.fetchTrendingWeek}
         />
       </Fragment>
     );

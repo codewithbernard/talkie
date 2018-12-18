@@ -4,17 +4,19 @@ const RECEIVE_TRENDING_MOVIES = "RECEIVE_TRENDING_MOVIES";
 const DISCOVER_BY_CATEGORY = "DISCOVER_CATEGORY";
 const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
+const RECEIVE_NEXT_MOVIES = "RECEIVE_NEXT_MOVIES";
 
-const discoverByCategory = category => {
+const discoverByCategory = (category, pageNumber) => {
   return {
     type: DISCOVER_BY_CATEGORY,
-    payload: category
+    payload: { category, pageNumber }
   };
 };
 
-const fetchTrendingWeek = () => {
+const fetchTrendingWeek = pageNumber => {
   return {
-    type: FETCH_TRENDING_MOVIES
+    type: FETCH_TRENDING_MOVIES,
+    payload: pageNumber
   };
 };
 
@@ -25,9 +27,17 @@ const receiveMovies = movies => {
   };
 };
 
-const fetchTrendingToday = () => {
+const receiveNextMovies = movies => {
   return {
-    type: FETCH_TRENDING_TODAY
+    type: RECEIVE_NEXT_MOVIES,
+    payload: movies
+  };
+};
+
+const fetchTrendingToday = pageNumber => {
+  return {
+    type: FETCH_TRENDING_TODAY,
+    payload: pageNumber
   };
 };
 
@@ -49,6 +59,7 @@ export {
   receiveMovies,
   fetchCategories,
   receiveCategories,
+  receiveNextMovies,
   fetchTrendingToday,
   discoverByCategory,
   FETCH_TRENDING_MOVIES,
@@ -56,5 +67,6 @@ export {
   RECEIVE_TRENDING_MOVIES,
   RECEIVE_CATEGORIES,
   FETCH_CATEGORIES,
-  DISCOVER_BY_CATEGORY
+  DISCOVER_BY_CATEGORY,
+  RECEIVE_NEXT_MOVIES
 };

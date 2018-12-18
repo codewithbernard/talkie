@@ -25,7 +25,11 @@ class App extends Component {
         exact
         path={`/${item.value}`}
         component={props => (
-          <Category categoryId={categoryIds[item.value]} {...props} />
+          <Category
+            title={item.label}
+            categoryId={categoryIds[item.value]}
+            {...props}
+          />
         )}
       />
     ));
