@@ -7,9 +7,11 @@ import {
   FETCH_CATEGORIES,
   FETCH_TRENDING_TODAY,
   DISCOVER_BY_CATEGORY,
+  FETCH_SEARCH_MOVIES,
   receiveMovies,
   receiveCategories,
-  receiveNextMovies
+  receiveNextMovies,
+  receiveSearchMovies
 } from "actions";
 
 function* fetchMovies(action) {
@@ -48,11 +50,19 @@ function* discoverByCategory(action) {
   }
 }
 
+function* fetchSearchMovies({ payload }) {
+  if (payload) {
+    const movies = yield call(() => api.fetchSearchMovies(payload));
+    yield put(receiveSearchMovies(movies.results));
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeEvery(FETCH_TRENDING_MOVIES, fetchMovies),
     takeEvery(FETCH_CATEGORIES, fetchCategories),
     takeEvery(FETCH_TRENDING_TODAY, fetchTrendingToday),
-    takeEvery(DISCOVER_BY_CATEGORY, discoverByCategory)
+    takeEvery(DISCOVER_BY_CATEGORY, discoverByCategory),
+    takeEvery(FETCH_SEARCH_MOVIES, fetchSearchMovies)
   ]);
 }

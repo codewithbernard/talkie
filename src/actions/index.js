@@ -5,6 +5,8 @@ const DISCOVER_BY_CATEGORY = "DISCOVER_CATEGORY";
 const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 const RECEIVE_NEXT_MOVIES = "RECEIVE_NEXT_MOVIES";
+const FETCH_SEARCH_MOVIES = "FETCH_SEARCH_MOVIES";
+const RECEIVE_SEARCH_MOVIES = "RECEIVE_SEARCH_MOVIES";
 
 const discoverByCategory = (category, pageNumber) => {
   return {
@@ -54,6 +56,20 @@ const receiveCategories = categories => {
   };
 };
 
+const fetchSearchMovies = searchTerm => {
+  return {
+    type: FETCH_SEARCH_MOVIES,
+    payload: searchTerm
+  };
+};
+
+const receiveSearchMovies = movies => {
+  return {
+    type: RECEIVE_SEARCH_MOVIES,
+    payload: movies
+  };
+};
+
 export {
   fetchTrendingWeek,
   receiveMovies,
@@ -62,11 +78,15 @@ export {
   receiveNextMovies,
   fetchTrendingToday,
   discoverByCategory,
+  fetchSearchMovies,
+  receiveSearchMovies,
   FETCH_TRENDING_MOVIES,
   FETCH_TRENDING_TODAY,
   RECEIVE_TRENDING_MOVIES,
   RECEIVE_CATEGORIES,
   FETCH_CATEGORIES,
   DISCOVER_BY_CATEGORY,
-  RECEIVE_NEXT_MOVIES
+  RECEIVE_NEXT_MOVIES,
+  FETCH_SEARCH_MOVIES,
+  RECEIVE_SEARCH_MOVIES
 };

@@ -41,9 +41,20 @@ const fetchCategories = async () => {
   return await api.get("genre/movie/list").json();
 };
 
+const fetchSearchMovies = async searchTerm => {
+  return await api
+    .get("search/movie", {
+      searchParams: {
+        query: searchTerm
+      }
+    })
+    .json();
+};
+
 export {
   fetchTrendingWeek,
   fetchTrendingToday,
   fetchCategories,
-  discoverByCategory
+  discoverByCategory,
+  fetchSearchMovies
 };

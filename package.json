@@ -5,6 +5,7 @@
   "dependencies": {
     "history": "^4.7.2",
     "ky": "^0.5.1",
+    "lodash": "^4.17.11",
     "normalizr": "^3.3.0",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Input from "components/Input";
 import { fadeIn } from "styled";
+import SearchForm from "containers/SearchForm";
 
 const Navbar = () => {
   return (
@@ -11,9 +11,7 @@ const Navbar = () => {
         <i className="fas fa-chevron-right" />
       </Arrows>
       <Logo>Talkie</Logo>
-      <Form>
-        <Input />
-      </Form>
+      <SearchForm />
     </Nav>
   );
 };
@@ -35,17 +33,6 @@ const Nav = styled.nav`
     justify-content: space-between;
     display: flex;
     position: unset;
-  }
-`;
-
-const Form = styled.form`
-  width: 200px;
-  display: none;
-
-  @media (min-width: 1025px) {
-    margin: 0 40px 0 0;
-    width: 300px;
-    display: block;
   }
 `;
 

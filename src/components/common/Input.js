@@ -1,18 +1,46 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Input = () => {
+const Input = ({ onFocus, onBlur, submit }) => {
   const [focus, setFocus] = useState(false);
+  const [value, setValue] = useState("");
   return (
     <InputField
       focus={focus}
-      onFocus={() => setFocus(true)}
-      onBlur={() => setFocus(false)}
+      onFocus={() => {
+        onFocus();
+        setFocus(true);
+      }}
+      onBlur={() => {
+        onBlur();
+        setFocus(false);
+      }}
     >
       <Icon focus={focus} className="fas fa-search" />
-      <StyledInput focus={focus} type="text" />
+      <StyledInput
+        value={value}
+        onChange={e => {
+          submit && submit(e.target.value);
+          setValue(e.target.value);
+        }}
+        focus={focus}
+        type="text"
+      />
     </InputField>
   );
+};
+
+Input.propTypes = {
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  submit: PropTypes.any
+};
+
+Input.defaultProps = {
+  onFocus: () => {},
+  onBlur: () => {},
+  submit: null
 };
 
 export default Input;
