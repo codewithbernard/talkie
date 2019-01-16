@@ -61,6 +61,7 @@ const Item = styled.li`
   flex-direction: column;
   padding: 10px 20px 10px 70px;
   position: relative;
+  cursor: pointer;
 
   &:nth-child(even) {
     background-color: #1b2b34;
@@ -71,6 +72,12 @@ const Item = styled.li`
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
+
+  &:hover {
+    h2 {
+      color: #00b7ff;
+    }
+  }
 `;
 
 const Title = styled.h2`
@@ -80,6 +87,7 @@ const Title = styled.h2`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  transition: color 0.5s;
 `;
 
 const Details = styled.div`
